@@ -4,10 +4,16 @@ import { Sidebar } from "@/components/dashboard/sidebar"
 import { Header } from "@/components/dashboard/header"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
+<<<<<<< HEAD
 import { AlertCircle, ShoppingCart, Download, FileText } from "lucide-react"
 import { useState, useRef } from "react"
 import { cn } from "@/lib/utils"
 import { exportLowStockToExcel, exportLowStockToPDF } from "@/lib/low-stock-export"
+=======
+import { AlertCircle, ShoppingCart } from "lucide-react"
+import { useState } from "react"
+import { cn } from "@/lib/utils"
+>>>>>>> d56b5bf90f7f396d6dd945f2f0fe4340dc634822
 
 const lowStockItems = [
   { id: 1, name: 'Aceite 5W-40 Shell', current: 2, minimum: 30, sku: 'OIL-001', category: 'Aceites', supplier: 'Shell Lubricants' },
@@ -19,6 +25,7 @@ const lowStockItems = [
 
 export default function LowStockPage() {
   const [isCollapsed, setIsCollapsed] = useState(false)
+<<<<<<< HEAD
   const [isExporting, setIsExporting] = useState(false)
   const contentRef = useRef<HTMLDivElement>(null)
 
@@ -47,6 +54,8 @@ export default function LowStockPage() {
       setIsExporting(false)
     }
   }
+=======
+>>>>>>> d56b5bf90f7f396d6dd945f2f0fe4340dc634822
 
   return (
     <div className="flex min-h-screen bg-background">
@@ -64,6 +73,7 @@ export default function LowStockPage() {
           title="Alertas de Stock Bajo"
           description="Productos que requieren reorden inmediato. Contacta a tus proveedores para reabastecer."
           actions={
+<<<<<<< HEAD
             <div className="flex gap-2">
               <Button 
                 onClick={handleExportExcel}
@@ -90,6 +100,16 @@ export default function LowStockPage() {
         />
 
         <div ref={contentRef} className="mt-8 space-y-4">
+=======
+            <Button className="h-9 px-4 text-sm font-medium bg-secondary text-secondary-foreground hover:bg-secondary/90 rounded-lg">
+              <ShoppingCart className="w-4 h-4 mr-2" />
+              Crear Orden Proveedor
+            </Button>
+          }
+        />
+
+        <div className="mt-8 space-y-4">
+>>>>>>> d56b5bf90f7f396d6dd945f2f0fe4340dc634822
           {lowStockItems.map((item) => {
             const percentage = (item.current / item.minimum) * 100
             const isVeryLow = item.current <= 5

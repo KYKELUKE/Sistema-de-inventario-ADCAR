@@ -5,6 +5,7 @@ const groq = createGroq({
   apiKey: process.env.GROQ_API_KEY,
 })
 
+<<<<<<< HEAD
 // Datos del inventario con compatibilidad vehicular
 const inventoryData = [
   { id: 1, name: 'Aceite 10W-40 Shell Advance', quantity: 45, minStock: 20, price: 89.99, cost: 50, category: 'Aceites Minerales', monthlyConsumption: 15, compatible: ['Toyota', 'Honda', 'Nissan', 'Ford', 'Chevrolet'], engines: ['Gasolina 1.5L-3.0L'], viscosity: '10W-40' },
@@ -31,6 +32,22 @@ const vehicleCompatibility: Record<string, any> = {
   'Mazda CX-5': { years: '2017-2023', engine: 'Gasolina 2.5L', oil: 'Aceite 10W-40 Shell Advance', filter: 'Filtro K&N' },
 }
 
+=======
+// Datos del inventario
+const inventoryData = [
+  { id: 1, name: 'Aceite 10W-40 Shell Advance', quantity: 45, minStock: 20, price: 89.99, cost: 50, category: 'Aceites Minerales', monthlyConsumption: 15 },
+  { id: 2, name: 'Aceite 5W-30 Castrol Magnatec', quantity: 28, minStock: 15, price: 92.99, cost: 52, category: 'Aceites Sintéticos', monthlyConsumption: 12 },
+  { id: 3, name: 'Fluido ATF Mobil', quantity: 8, minStock: 10, price: 45.99, cost: 25, category: 'Fluidos de Transmisión', monthlyConsumption: 8 },
+  { id: 4, name: 'Refrigerante Prestone Rojo', quantity: 18, minStock: 12, price: 25.99, cost: 12, category: 'Refrigerantes', monthlyConsumption: 6 },
+  { id: 5, name: 'Aceite Sintético 0W-20', quantity: 12, minStock: 15, price: 105.99, cost: 60, category: 'Aceites Sintéticos', monthlyConsumption: 5 },
+  { id: 6, name: 'Filtro de Aceite Fram PH8A', quantity: 32, minStock: 20, price: 34.99, cost: 15, category: 'Filtros', monthlyConsumption: 18 },
+  { id: 7, name: 'Liquido Limpiaparabrisas', quantity: 50, minStock: 25, price: 12.99, cost: 5, category: 'Líquidos', monthlyConsumption: 20 },
+  { id: 8, name: 'Grasa Multipropósito NLGI 2', quantity: 15, minStock: 10, price: 22.50, cost: 10, category: 'Grasas', monthlyConsumption: 4 },
+  { id: 9, name: 'Aceite Motor 15W-40 Diesel', quantity: 3, minStock: 10, price: 78.99, cost: 45, category: 'Aceites Minerales', monthlyConsumption: 10 },
+  { id: 10, name: 'Fluido Hidráulico ISO 46', quantity: 5, minStock: 15, price: 55.99, cost: 30, category: 'Fluidos de Transmisión', monthlyConsumption: 7 },
+]
+
+>>>>>>> d56b5bf90f7f396d6dd945f2f0fe4340dc634822
 function getInventorySummary(): string {
   const total = inventoryData.reduce((s, p) => s + (p.price * p.quantity), 0)
   const critical = inventoryData.filter(p => p.quantity < p.minStock)
@@ -47,6 +64,7 @@ Críticos: ${critical.length}
 ${inventory}`
 }
 
+<<<<<<< HEAD
 // Respuestas inteligentes locales para vehículos comunes
 function generateLocalResponse(message: string): string {
   const msg = message.toLowerCase()
@@ -200,6 +218,18 @@ ESTILO:
 - Hablo como un mecánico experimentado
 - Doy datos técnicos precisos
 - Soy directo y accionable`
+=======
+export async function POST(request: Request) {
+  try {
+    const { messages } = await request.json()
+    console.log('[CRICIA] Recibido:', messages[messages.length - 1]?.content)
+
+    const systemPrompt = `Eres CRICIA, agente IA experto en inventario para AD CAR DAVILA.
+
+${getInventorySummary()}
+
+Habla como un profesional real: natural, directo, con datos concretos. Entiende intención, anticipa necesidades. Sé empático pero accionable.`
+>>>>>>> d56b5bf90f7f396d6dd945f2f0fe4340dc634822
 
     const result = await streamText({
       model: groq('llama-3.1-70b-versatile'),
@@ -208,12 +238,21 @@ ESTILO:
       maxTokens: 1000,
     })
 
+<<<<<<< HEAD
+=======
+    // Convertir a ReadableStream con formato SSE
+>>>>>>> d56b5bf90f7f396d6dd945f2f0fe4340dc634822
     const encoder = new TextEncoder()
     const stream = new ReadableStream({
       async start(controller) {
         try {
+<<<<<<< HEAD
           for await (const textChunk of result.textStream) {
             const data = JSON.stringify({ type: 'text-delta', delta: textChunk })
+=======
+          for await (const chunk of result.textStream) {
+            const data = JSON.stringify({ type: 'text-delta', delta: chunk })
+>>>>>>> d56b5bf90f7f396d6dd945f2f0fe4340dc634822
             controller.enqueue(encoder.encode(`data: ${data}\n\n`))
           }
           controller.enqueue(encoder.encode(`data: [DONE]\n\n`))
@@ -233,10 +272,15 @@ ESTILO:
       },
     })
   } catch (error) {
+<<<<<<< HEAD
     console.error('[CRICIA Fatal Error]:', error)
     return new Response(
       JSON.stringify({ error: 'Error procesando solicitud' }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     )
+=======
+    console.error('[CRICIA API Error]:', error)
+    return new Response('Error', { status: 500 })
+>>>>>>> d56b5bf90f7f396d6dd945f2f0fe4340dc634822
   }
 }

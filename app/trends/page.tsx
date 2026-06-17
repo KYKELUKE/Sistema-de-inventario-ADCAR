@@ -108,26 +108,45 @@ export default function AIAgentPage() {
 
   const quickQuestions: QuickQuestion[] = [
     { 
+<<<<<<< HEAD
       title: 'Compatibilidad Vehicular', 
       question: '¿Qué aceite y filtros necesita un Toyota Camry 2020? Dame especificaciones exactas y disponibilidad.',
+=======
+      title: 'Estado del Inventario', 
+      question: '¿Cuál es el estado actual de mi inventario? Dame un resumen detallado.',
+>>>>>>> d56b5bf90f7f396d6dd945f2f0fe4340dc634822
       icon: <BarChart3 className="w-5 h-5" />,
       color: 'bg-red-50 border-red-200 hover:bg-red-100'
     },
     { 
       title: 'Stock Crítico', 
+<<<<<<< HEAD
       question: '¿Qué productos están en stock crítico? ¿Cuáles debo reabastecer primero según la demanda?',
+=======
+      question: '¿Qué productos están en stock crítico y necesitan reorden urgente?',
+>>>>>>> d56b5bf90f7f396d6dd945f2f0fe4340dc634822
       icon: <AlertCircle className="w-5 h-5" />,
       color: 'bg-orange-50 border-orange-200 hover:bg-orange-100'
     },
     { 
+<<<<<<< HEAD
       title: 'Asesoría Técnica', 
       question: 'Un cliente tiene un Ford F-150 diesel 6.7L. ¿Qué mantenimiento requiere y qué productos necesita?',
+=======
+      title: 'Análisis de Tendencias', 
+      question: '¿Cuáles son mis productos con mejor y peor tendencia de venta?',
+>>>>>>> d56b5bf90f7f396d6dd945f2f0fe4340dc634822
       icon: <TrendingUp className="w-5 h-5" />,
       color: 'bg-green-50 border-green-200 hover:bg-green-100'
     },
     { 
+<<<<<<< HEAD
       title: 'Equivalencias', 
       question: '¿Qué aceites y filtros equivalentes tenemos? Dame alternativas a marcas costosas.',
+=======
+      title: 'Recomendaciones', 
+      question: '¿Qué estrategia de reorden me recomiendas para optimizar mi inventario?',
+>>>>>>> d56b5bf90f7f396d6dd945f2f0fe4340dc634822
       icon: <Zap className="w-5 h-5" />,
       color: 'bg-blue-50 border-blue-200 hover:bg-blue-100'
     },
@@ -241,7 +260,11 @@ export default function AIAgentPage() {
               </div>
             </div>
             <p className="text-red-50 text-sm mt-4 max-w-2xl">
+<<<<<<< HEAD
               Experta en autopartes, lubricantes y mantenimiento vehicular. Asesoro sobre compatibilidad de productos con cualquier marca/modelo/año de vehículo. Ayudo a mecánicos a encontrar las piezas correctas y recomiendo estrategias de mantenimiento.
+=======
+              Analizo tu inventario en tiempo real, detecta anomalías, predicciones futuras y optimización inteligente del capital.
+>>>>>>> d56b5bf90f7f396d6dd945f2f0fe4340dc634822
             </p>
           </div>
 

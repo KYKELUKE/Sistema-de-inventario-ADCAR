@@ -12,12 +12,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+<<<<<<< HEAD
 import { BarChart3, Package, ShoppingCart, AlertCircle, Calendar, TrendingUp, DollarSign, Download, FileText } from 'lucide-react'
 import { useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 import { exportToExcel, exportToPDF } from '@/lib/report-generators'
+=======
+import { BarChart3, Package, ShoppingCart, AlertCircle, Calendar, TrendingUp, DollarSign } from 'lucide-react'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { cn } from '@/lib/utils'
+import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+>>>>>>> d56b5bf90f7f396d6dd945f2f0fe4340dc634822
 
 const weeklySalesData = [
   { day: 'Lunes', ventas: 2450, pedidos: 18, aceites: 1200, refrigerantes: 850, filtros: 400 },
@@ -29,6 +37,7 @@ const weeklySalesData = [
   { day: 'Domingo', ventas: 2780, pedidos: 20, aceites: 1450, refrigerantes: 900, filtros: 430 },
 ]
 
+<<<<<<< HEAD
 const reportMetrics = {
   totalIngresos: 45230,
   totalPedidos: 156,
@@ -66,6 +75,12 @@ export default function ReportsPage() {
       setIsExporting(false)
     }
   }
+=======
+export default function ReportsPage() {
+  const [isCollapsed, setIsCollapsed] = useState(false)
+  const [reportType, setReportType] = useState('monthly')
+  const router = useRouter()
+>>>>>>> d56b5bf90f7f396d6dd945f2f0fe4340dc634822
 
   return (
     <div className="flex min-h-screen bg-background">
@@ -104,6 +119,7 @@ export default function ReportsPage() {
         />
 
         {/* Report Period Selector */}
+<<<<<<< HEAD
         <div className="mt-8 flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
           <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
             <Select value={reportType} onValueChange={setReportType}>
@@ -149,6 +165,29 @@ export default function ReportsPage() {
         <div ref={reportRef} className="mt-8 bg-white p-6 rounded-lg">
           {/* Key Metrics */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+=======
+        <div className="mt-8 flex flex-col sm:flex-row gap-3 items-start sm:items-center">
+          <Select value={reportType} onValueChange={setReportType}>
+            <SelectTrigger className="h-9 w-full sm:w-40 text-sm rounded-lg">
+              <SelectValue placeholder="Período" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="daily">Hoy</SelectItem>
+              <SelectItem value="weekly">Esta Semana</SelectItem>
+              <SelectItem value="monthly">Este Mes</SelectItem>
+              <SelectItem value="quarterly">Este Trimestre</SelectItem>
+              <SelectItem value="yearly">Este Año</SelectItem>
+            </SelectContent>
+          </Select>
+          <Badge variant="outline" className="h-9 px-3 flex items-center gap-2">
+            <Calendar className="w-4 h-4" />
+            Ene 1 - Ene 31, 2024
+          </Badge>
+        </div>
+
+        {/* Key Metrics */}
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+>>>>>>> d56b5bf90f7f396d6dd945f2f0fe4340dc634822
           <Card className="border-0 shadow-sm">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">Ingresos Totales</CardTitle>
@@ -434,7 +473,10 @@ export default function ReportsPage() {
             ))}
           </div>
         </Card>
+<<<<<<< HEAD
         </div>
+=======
+>>>>>>> d56b5bf90f7f396d6dd945f2f0fe4340dc634822
       </main>
     </div>
   )
