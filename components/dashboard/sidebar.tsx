@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   LayoutDashboard,
@@ -9,66 +9,66 @@ import {
   Settings,
   HelpCircle,
   LogOut,
-  TrendingUp,
   RefreshCw,
   ChevronLeft,
   ChevronRight,
   ShoppingCart,
-} from "lucide-react"
-import { cn } from "@/lib/utils"
-import { useState, createContext, useContext } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { Button } from "@/components/ui/button"
+} from "lucide-react";
+import { cn } from "@/lib/utils";
+import { useState, createContext, useContext } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Button } from "@/components/ui/button";
 
 // Create context for sidebar collapse state
 const SidebarContext = createContext<{
-  isCollapsed: boolean
-  setIsCollapsed: (collapsed: boolean) => void
+  isCollapsed: boolean;
+  setIsCollapsed: (collapsed: boolean) => void;
 }>({
   isCollapsed: false,
   setIsCollapsed: () => {},
-})
+});
 
-export const useSidebar = () => useContext(SidebarContext)
+export const useSidebar = () => useContext(SidebarContext);
 
 const menuItems = [
   { icon: LayoutDashboard, label: "Inicio", href: "/" },
   { icon: Package, label: "Productos", href: "/products" },
   { icon: ShoppingCart, label: "Órdenes/Ventas", href: "/orders" },
   { icon: AlertCircle, label: "Stock Bajo", badge: "3", href: "/low-stock" },
-]
+];
 
 const managementItems = [
   { icon: BarChart3, label: "Reportes", href: "/reports" },
   { icon: RefreshCw, label: "Gestión de Stock", href: "/stock-management" },
-  { icon: TrendingUp, label: "Tendencias", href: "/trends" },
   { icon: Users, label: "Proveedores", href: "/suppliers" },
-]
-
-const aiItems = [
-  // AI tools items can be added here
-]
+];
 
 const generalItems = [
   { icon: Settings, label: "Configuración", href: "/settings" },
   { icon: HelpCircle, label: "Ayuda", href: "/help" },
   { icon: LogOut, label: "Cerrar Sesión", href: "/logout" },
-]
+];
 
-export function Sidebar({ isCollapsed = false, onToggle }: { isCollapsed?: boolean; onToggle?: () => void } = {}) {
-  const [hoveredItem, setHoveredItem] = useState<string | null>(null)
-  const pathname = usePathname()
+export function Sidebar({
+  isCollapsed = false,
+  onToggle,
+}: { isCollapsed?: boolean; onToggle?: () => void } = {}) {
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  const pathname = usePathname();
 
   return (
     <aside
       className={cn(
         "fixed top-0 left-0 bg-sidebar border-r border-sidebar-border h-screen overflow-y-auto lg:block transition-all duration-300 ease-in-out",
         isCollapsed ? "w-16" : "w-60",
-      )}
-    >
+      )}>
       <div className={cn("p-4", isCollapsed && "px-2")}>
-        <div className={cn("mb-6 flex items-center", isCollapsed ? "justify-center" : "justify-between")}>
+        <div
+          className={cn(
+            "mb-6 flex items-center",
+            isCollapsed ? "justify-center" : "justify-between",
+          )}>
           {!isCollapsed && (
             <Link href="/">
               <div className="flex items-center gap-2">
@@ -76,8 +76,12 @@ export function Sidebar({ isCollapsed = false, onToggle }: { isCollapsed?: boole
                   <Package className="w-5 h-5 text-sidebar-primary-foreground" />
                 </div>
                 <div>
-                  <span className="text-base font-bold text-sidebar-foreground">LubrOil</span>
-                  <p className="text-[10px] text-muted-foreground">Lubricentro</p>
+                  <span className="text-base font-bold text-sidebar-foreground">
+                    LubrOil
+                  </span>
+                  <p className="text-[10px] text-muted-foreground">
+                    Lubricentro
+                  </p>
                 </div>
               </div>
             </Link>
@@ -95,8 +99,7 @@ export function Sidebar({ isCollapsed = false, onToggle }: { isCollapsed?: boole
               className={cn(
                 "h-7 w-7 rounded-lg hover:bg-sidebar-accent",
                 isCollapsed && "hidden",
-              )}
-            >
+              )}>
               <ChevronLeft className="w-3.5 h-3.5" />
             </Button>
           )}
@@ -111,7 +114,7 @@ export function Sidebar({ isCollapsed = false, onToggle }: { isCollapsed?: boole
             )}
             <nav className="space-y-0.5">
               {menuItems.map((item) => {
-                const isActive = pathname === item.href
+                const isActive = pathname === item.href;
                 return (
                   <Link
                     key={item.label}
@@ -123,9 +126,13 @@ export function Sidebar({ isCollapsed = false, onToggle }: { isCollapsed?: boole
                         ? "bg-secondary text-secondary-foreground font-medium"
                         : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                       isCollapsed && "justify-center",
-                    )}
-                  >
-                    <item.icon className={cn("w-4 h-4 flex-shrink-0", isCollapsed && "w-5 h-5")} />
+                    )}>
+                    <item.icon
+                      className={cn(
+                        "w-4 h-4 flex-shrink-0",
+                        isCollapsed && "w-5 h-5",
+                      )}
+                    />
                     {!isCollapsed && (
                       <>
                         <span className="text-sm flex-1">{item.label}</span>
@@ -137,7 +144,7 @@ export function Sidebar({ isCollapsed = false, onToggle }: { isCollapsed?: boole
                       </>
                     )}
                   </Link>
-                )
+                );
               })}
             </nav>
           </div>
@@ -150,7 +157,7 @@ export function Sidebar({ isCollapsed = false, onToggle }: { isCollapsed?: boole
             )}
             <nav className="space-y-0.5">
               {managementItems.map((item) => {
-                const isActive = pathname === item.href
+                const isActive = pathname === item.href;
                 return (
                   <Link
                     key={item.label}
@@ -162,9 +169,13 @@ export function Sidebar({ isCollapsed = false, onToggle }: { isCollapsed?: boole
                         ? "bg-secondary text-secondary-foreground font-medium"
                         : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                       isCollapsed && "justify-center",
-                    )}
-                  >
-                    <item.icon className={cn("w-4 h-4 flex-shrink-0", isCollapsed && "w-5 h-5")} />
+                    )}>
+                    <item.icon
+                      className={cn(
+                        "w-4 h-4 flex-shrink-0",
+                        isCollapsed && "w-5 h-5",
+                      )}
+                    />
                     {!isCollapsed && (
                       <>
                         <span className="text-sm flex-1">{item.label}</span>
@@ -176,7 +187,7 @@ export function Sidebar({ isCollapsed = false, onToggle }: { isCollapsed?: boole
                       </>
                     )}
                   </Link>
-                )
+                );
               })}
             </nav>
           </div>
@@ -189,7 +200,7 @@ export function Sidebar({ isCollapsed = false, onToggle }: { isCollapsed?: boole
             )}
             <nav className="space-y-0.5">
               {generalItems.map((item) => {
-                const isActive = pathname === item.href
+                const isActive = pathname === item.href;
                 return (
                   <Link
                     key={item.label}
@@ -201,17 +212,20 @@ export function Sidebar({ isCollapsed = false, onToggle }: { isCollapsed?: boole
                         ? "bg-primary/10 text-primary font-medium"
                         : "text-muted-foreground hover:bg-sidebar-accent hover:text-foreground",
                       isCollapsed && "justify-center",
+                    )}>
+                    <item.icon
+                      className={cn("w-4 h-4", isCollapsed && "w-4.5 h-4.5")}
+                    />
+                    {!isCollapsed && (
+                      <span className="text-sm">{item.label}</span>
                     )}
-                  >
-                    <item.icon className={cn("w-4 h-4", isCollapsed && "w-4.5 h-4.5")} />
-                    {!isCollapsed && <span className="text-sm">{item.label}</span>}
                   </Link>
-                )
+                );
               })}
             </nav>
           </div>
         </div>
       </div>
     </aside>
-  )
+  );
 }
